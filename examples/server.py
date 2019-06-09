@@ -214,6 +214,8 @@ def main():
 
     try:
         loop.run_until_complete(start_server())
+    except FileNotFoundError as ex:
+        sys.exit(f"error: {ex} - have you run ssh-keygen to generate the expected key files?")
     except (OSError, asyncssh.Error) as exc:
         sys.exit(f'Error starting server: {exc}')
 
